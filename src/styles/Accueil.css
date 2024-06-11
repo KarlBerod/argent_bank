@@ -1,0 +1,17 @@
+/* .features{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    align-items: center;
+    display: flex;
+} */
+.features {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 920px) {
+    .features {
+      flex-direction: row;
+    }
+  }
