@@ -14,3 +14,39 @@
     margin-left: 50px;
     margin-right: 50px;
 }
+
+.formInputs{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: flex-end;
+}
+
+.formInputs input{
+    height: 22px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.readOnly{
+    background-color: grey;
+}
+
+.edit-name-button{
+    margin-bottom: 20px;
+}
+
+.edit-user-buttons{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.save-name-edit-button, .cancel-name-edit-button{
+    width: 120px;
+}
+
+.hidden{
+    display: none;
+}

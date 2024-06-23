@@ -1,5 +1,5 @@
 import '../styles/Banner.css'
-import bank_tree from "../images/bank-tree.jpeg"
+import bank_tree from "../images/bank-tree.webp"
 
 function TextSplitting({text}){
     const splittedText = text.split(".");

@@ -1,9 +1,9 @@
 import '../styles/Accueil.css'
 import Banner from "./Banner"
 import Feature from "./Feature"
-import iconChat from "../images/icon-chat.png"
-import iconMoney from "../images/icon-money.png"
-import iconSecurity from "../images/icon-security.png"
+import iconChat from "../images/icon-chat.webp"
+import iconMoney from "../images/icon-money.webp"
+import iconSecurity from "../images/icon-security.webp"
 
 export default function Accueil(){
     return(

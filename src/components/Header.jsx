@@ -1,11 +1,14 @@
 import '../styles/Header.css'
-import logo from "../images/argentBankLogo.png"
+import logo from "../images/argentBankLogo.webp"
 import { Link } from 'react-router-dom';
 
 export default function Header({loggedIn, userName}){
+    loggedIn=0;
     return(
         <header>
-            <img src={logo} alt="logo du site" />
+            <Link to="/">
+                <img src={logo} alt="logo du site" />
+            </Link>
             <nav>
                 <div className={`loggedOutSection ${loggedIn === 1 ? 'hidden' : ''}`}>
                     <Link to="/sign-in">

@@ -3,7 +3,6 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Accueil from "./Accueil"
 import BankAccount from "./BankAccount"
-import Transactions from "./Transactions"
 import SignIn from "./SignIn"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { store } from './app/store'
@@ -21,7 +20,6 @@ function App() {
             <Route path="/" element={<Accueil />} />
             <Route path="/user" element={<BankAccount />} />
             <Route path="/sign-in" element={<SignIn />} />
-            <Route path='/transactions' element={<Transactions />} />
             {/* <Route path='/transactions' element={<Transactions account={account}/>} /> */}
             
           </Routes>
