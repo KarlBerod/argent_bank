@@ -1,18 +1,50 @@
 import "../styles/BankAccount.css"
 import Button from "./Button"
 import Balance from "./Balance"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, updateUserName } from "../features/counter/userSlice";
 
 
 export default function BankAccount(){
-    const firstName=0;
-    const lastName=0;
-    const [edit, setEdit]=useState(false);
-    const [username, setUsername]=useState('username');
+    const dispatch = useDispatch();
+    const token = useSelector((state) => state.user.token);
 
+    useEffect(() => {
+        dispatch(getUserInfo(token));
+    },[dispatch, token]);
+
+    const firstName=useSelector((state)=> state.user.userInfo?.body?.firstName);
+    const lastName=useSelector((state)=> state.user.userInfo?.body?.lastName);
+    const tmp= useSelector((state)=> state.user.userInfo?.body?.userName);
+    console.log("tmp", tmp, "name", firstName)
+
+    useEffect(() => {
+        setUsername(tmp);
+    },[tmp]);
+
+    const [edit, setEdit]=useState(false);
+    const [username, setUsername]=useState(tmp);
+    console.log(username);
+
+    //when save button is pressed
+    const saveNameChange=(e) =>{
+        e.preventDefault();
+        editionMod();
+        if (username!== null){
+            dispatch(updateUserName({token, newUserName: {username}}));
+        }
+    }
+
+    //when cancel button is pressed
+    const cancelEditionMod=() =>{
+        editionMod();
+        setUsername(tmp);
+    }
+
+    //display the edition mod or not
     const editionMod= () =>{ 
         setEdit(!edit);
-        console.log('Edit mode:', !edit);
     }
 
     const editUsername=(value) =>{
@@ -45,10 +77,10 @@ export default function BankAccount(){
                         </div>
                     </div>
                     <div className="edit-user-buttons">
-                        <div onClick={editionMod}>
+                        <div onClick={saveNameChange}>
                             <Button text="Save" className="save-name-edit-button" type="submit" />
                         </div>
-                        <div onClick={editionMod}>
+                        <div onClick={cancelEditionMod}>
                             <Button text="Cancel" className="cancel-name-edit-button" />
                         </div>
                     </div>

@@ -1,29 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-// const initialState = {
-//   value: 0,
-// }
-
-// export const counterSlice = createSlice({
-//   name: 'counter',
-//   initialState,
-//   reducers: {
-//     increment: (state) => {
-//       // Redux Toolkit allows us to write "mutating" logic in reducers. It
-//       // doesn't actually mutate the state because it uses the Immer library,
-//       // which detects changes to a "draft state" and produces a brand new
-//       // immutable state based off those changes
-//       state.value += 1
-//     },
-//     decrement: (state) => {
-//       state.value -= 1
-//     },
-//     incrementByAmount: (state, action) => {
-//       state.value += action.payload
-//     },
-//   },
-// })
-
 export const loginAsync = createAsyncThunk(
     'login',
     async(data) => {
@@ -36,6 +12,7 @@ export const loginAsync = createAsyncThunk(
         if (!response.ok){
             throw new Error('Error');
         }
+        
         const token = await response.json();
         return token;
     }
@@ -76,7 +53,9 @@ export const getUserInfo = createAsyncThunk(
 
 export const updateUserName= createAsyncThunk(
     'updateUserName',
-    async(token, newUserName) =>{
+    async({ token, newUserName }) =>{
+        console.log("Token:", token); 
+        console.log("Username:", newUserName);
         const response= await fetch("http://localhost:3001/api/v1/user/profile", {
             method:"PUT",
             headers:{
@@ -88,23 +67,34 @@ export const updateUserName= createAsyncThunk(
         if (!response.ok){
             throw new Error('Error');
         }
-        return ('Username updated successfully')
+        return (newUserName)
     }
 )
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        token: null,
+        token: localStorage.getItem('token') || null,
         userInfo: null,
         status: null,
         error: null
     },
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.token = null;
+            state.userInfo = null;
+            state.status = null;
+            state.error = null;
+            localStorage.removeItem('token');
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(loginAsync.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.token = action.payload;
+            console.log("token", state.token);
+            console.log("payload:", action.payload);
+            state.token = action.payload.body.token;
+            localStorage.setItem('token', action.payload.body.token);
         });
         builder.addCase(loginAsync.rejected, (state, action) => {
             state.status = 'failed';
@@ -113,7 +103,7 @@ const userSlice = createSlice({
 
 
 
-        builder.addCase(signUp.fulfilled, (state, action) => {
+        builder.addCase(signUp.fulfilled, (state) => {
             state.status = 'succeeded';
         });
         builder.addCase(signUp.rejected, (state, action) => {
@@ -134,8 +124,11 @@ const userSlice = createSlice({
 
 
 
-        builder.addCase(updateUserName.fulfilled, (state) => {
+        builder.addCase(updateUserName.fulfilled, (state, action) => {
             state.status = 'succeeded';
+            state.userInfo.body.userName = action.payload.username;
+            console.log("state username", state.userInfo.body.userName);
+            console.log("action payload: ", action.payload);
         });
         builder.addCase(updateUserName.rejected, (state, action) => {
             state.status = 'failed';
@@ -147,5 +140,5 @@ const userSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
+export const { logout } = userSlice.actions
 export default userSlice.reducer
