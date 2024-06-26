@@ -54,22 +54,21 @@ export const getUserInfo = createAsyncThunk(
 export const updateUserName= createAsyncThunk(
     'updateUserName',
     async({ token, newUserName }) =>{
-        console.log("Token:", token); 
-        console.log("Username:", newUserName);
         const response= await fetch("http://localhost:3001/api/v1/user/profile", {
             method:"PUT",
             headers:{
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(newUserName)
+            body: JSON.stringify({ userName: newUserName.username })
         });
         if (!response.ok){
             throw new Error('Error');
         }
-        return (newUserName)
+        return newUserName;
     }
 )
+
 
 const userSlice = createSlice({
     name: 'user',
