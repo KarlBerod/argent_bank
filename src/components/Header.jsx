@@ -30,7 +30,7 @@ export default function Header(){
                         <i className='fa fa-user-circle'></i>
                         {userName}
                     </Link>
-                    <Link to="/" onClick={logoutFunction}>
+                    <Link to="/" onClick={logoutFunction} className='logout'>
                         <i className="fa fa-sign-out"></i>
                         Sign Out
                     </Link>

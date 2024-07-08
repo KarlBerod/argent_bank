@@ -4,10 +4,12 @@ import Balance from "./Balance"
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, updateUserName } from "../features/counter/userSlice";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function BankAccount(){
     const dispatch = useDispatch();
+    const navigate= useNavigate();
     const token = useSelector((state) => state.user.token);
 
     useEffect(() => {
@@ -17,15 +19,20 @@ export default function BankAccount(){
     const firstName=useSelector((state)=> state.user.userInfo?.body?.firstName);
     const lastName=useSelector((state)=> state.user.userInfo?.body?.lastName);
     const tmp= useSelector((state)=> state.user.userInfo?.body?.userName);
-    console.log("tmp", tmp, "name", firstName)
 
     useEffect(() => {
         setUsername(tmp);
     },[tmp]);
 
+    useEffect(() => {
+        const tempToken = localStorage.getItem('token');
+        if (tempToken === null){
+            navigate('/');
+        }
+    },[]);
+
     const [edit, setEdit]=useState(false);
     const [username, setUsername]=useState(tmp);
-    console.log(username);
 
     //when save button is pressed
     const saveNameChange=(e) =>{
