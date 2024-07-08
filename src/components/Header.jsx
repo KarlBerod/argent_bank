@@ -2,7 +2,7 @@ import '../styles/Header.css'
 import logo from "../images/argentBankLogo.webp"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../features/counter/userSlice';
+import { logout } from '../features/user/userSlice';
 
 export default function Header(){
     const dispatch = useDispatch();

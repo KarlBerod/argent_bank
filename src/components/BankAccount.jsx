@@ -3,7 +3,7 @@ import Button from "./Button"
 import Balance from "./Balance"
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, updateUserName } from "../features/counter/userSlice";
+import { getUserInfo, updateUserName } from "../features/user/userSlice";
 import { useNavigate } from 'react-router-dom';
 
 

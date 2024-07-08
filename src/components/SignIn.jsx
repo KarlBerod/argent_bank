@@ -1,7 +1,7 @@
 import "../styles/SignIn.css"
 import Button from "./Button"
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAsync } from '../features/counter/userSlice';
+import { loginAsync } from '../features/user/userSlice';
 import { useState } from "react";
 
 export default function SignIn(){
