@@ -15,24 +15,24 @@ export default function Header(){
 
     return(
         <header>
-            <Link to="/">
+            <Link to="/" className='main-nav-logo'>
                 <img src={logo} alt="logo du site" />
             </Link>
             <nav>
                 <div className={`loggedOutSection ${token!==null ? 'hidden' : ''}`}>
                     <Link to="/sign-in">
-                        <i className='fa fa-user-circle'></i>
-                        Sign in
+                        <i className='fa fa-user-circle navItem'>Sign in</i>
+                        
                     </Link>
                 </div>
                 <div className={`loggedInSection ${token==null ? 'hidden' : ''}`}>
-                    <Link to="/bank-account">
-                        <i className='fa fa-user-circle'></i>
-                        {userName}
+                    <Link to="/user">
+                        <i className='fa fa-user-circle navItem'>{userName}</i>
+                        
                     </Link>
                     <Link to="/" onClick={logoutFunction} className='logout'>
-                        <i className="fa fa-sign-out"></i>
-                        Sign Out
+                        <i className="fa fa-sign-out navItem">Sign Out</i>
+                        
                     </Link>
                 </div>
             </nav>

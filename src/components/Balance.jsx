@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 
 export default function Balance({accountType, balance, withdraw, buttonText, buttonPath}){    return(
-        <div className="balance">
+        <section className="balance">
             <div className="balanceLeft">
                 <h3 className="balance-title">{accountType}</h3>
                 <p className="balance-amount">{balance}</p>
@@ -19,6 +19,6 @@ export default function Balance({accountType, balance, withdraw, buttonText, but
                     <Button text={buttonText} className="transactionButton"/>
                 </Link>
             </div>
-        </div>
+        </section>
     )
 }

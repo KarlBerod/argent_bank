@@ -14,9 +14,9 @@ export default function Banner({strongText, text}){
     return(
         <div className='bannerImage' style={{ backgroundImage: `url(${bank_tree})` }}>
             <div className='bannerText'>
-                <div className='bannerTitle'>
+                <h2 className='bannerTitle'>
                     <TextSplitting text={strongText}/>
-                </div>
+                </h2>
                 <div className='bannerSubtitle'>
                     <p>{text}</p>
                 </div>

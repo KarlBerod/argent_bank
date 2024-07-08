@@ -1,9 +1,9 @@
 .bannerImage{
-    background-position: 0 -350px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 300px;
-    position: relative;
+    background-position: 0 -50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  position: relative;
 }
 
 .bannerText{
@@ -25,6 +25,10 @@
 .bannerSubtitle p{
     margin-bottom: 0;
     font-size: 0.9rem;
+}
+
+.bannerTitle{
+    margin: 0;
 }
 
 @media (min-width: 920px) {
