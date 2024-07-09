@@ -12,15 +12,18 @@ export default function SignIn(){
 
     const login = async(e) =>{
         e.preventDefault();
-        setUserMessage(true);
         try {
             const result = await dispatch(loginAsync({ email, password }));
             if (loginAsync.fulfilled.match(result)) {
                 window.location.href = "/user";
             }
+            else{
+                setUserMessage(true);
+            }
         } catch (err) {
             console.error('Failed to login:', err);
         }
+        
     };
 
     return(
